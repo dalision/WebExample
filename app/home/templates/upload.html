@@ -1,0 +1,69 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Elements {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<!-- <link rel="stylesheet" href="Web/app/base/static/assets/css/shared/animate.css"> -->
+<section id="contact" class="blete-section-wrapper blete-contact-section" data-stellar-background-ratio="0.5" name="contact">
+  <div class="blete-parallax-overlay"></div>
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 blete-section-header wow fadeInDown blete-section-header-parallax">
+          <h2>固件<span class="blete-highlight-text">上传</span></h2>
+          <div class="blete-section-divider"></div>
+          <p class="col-md-12 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1" id="upload_introduction">开始上传固件吧！</p>
+      </div>
+</div>
+</div>
+</section>
+
+  <div class="content-wrapper">
+    <div class="row wow slideInUp" data-wow-duration="1s">
+      <div class="col-md-6 grid-margin stretch-card" id='upload'>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">上传固件</h4>
+            <p class="card-description">固件信息</p>
+            <form class="forms-sample" method="POST" enctype="multipart/form-data">
+              {{ form.hidden_tag() }}
+              <div class="form-group">
+                <label for="exampleInputName1">名称</label>
+                {{ form.name(type="text",class="form-control",id="firmwareName1",placeholder="Name")}}
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">品牌</label>
+                <select class="form-control form-control-lg" id="exampleFormControlSelect1" name='brand'>
+                  {% for o in data %}
+                  <option value="{{ o.name }}">{{ o.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea1">描述</label>
+                {{ form.info(class="form-control", id="info1", rows="2", type="textarea")}}
+              </div>
+              <div class="form-group">
+                <label>File upload</label><br>
+                <div class="input-group col-xs-12">
+                  {{ form.firmware}}
+                  {% for error in form.firmware.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                  {% endfor %}
+                </div>
+              </div>
+              {{ form.submit(class="btn btn-success mr-2")}}
+              <button class="btn btn-light">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
